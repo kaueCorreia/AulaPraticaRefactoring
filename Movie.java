@@ -37,7 +37,7 @@ public class Movie {
                 throw new IllegalArgumentException("Incorrect Price Code");
         }
     }
-    
+
     public double getCharge(int daysRented) {
         return _price.getCharge(daysRented);
     }
