@@ -2,6 +2,7 @@ import java.util.Enumeration;
 import java.util.Vector;
 
 public class Customer {
+
     private String _name;
     private Vector _rentals = new Vector();
 
@@ -26,22 +27,17 @@ public class Customer {
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
 
-            frequentRenterPoints++;
+            frequentRenterPoints += each.getFrequentRenterPoints();
 
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
-                    each.getDaysRented() > 1)
-                frequentRenterPoints++;
-
-            result += "\t" + each.getMovie().getTitle() + "\t" +
-                    String.valueOf(each.getCharge()) + "\n";
+            result += "\t" + each.getMovie().getTitle() + "\t"
+                    + String.valueOf(each.getCharge()) + "\n";
 
             totalAmount += each.getCharge();
         }
 
         result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints) +
-                " frequent renter points";
-
+        result += "You earned " + String.valueOf(frequentRenterPoints)
+                + " frequent renter points";
         return result;
     }
 }
