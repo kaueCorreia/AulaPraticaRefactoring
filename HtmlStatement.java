@@ -1,27 +1,18 @@
-import java.util.Enumeration;
-
 public class HtmlStatement extends Statement {
 
-    public String value(Customer aCustomer) {
-        Enumeration rentals = aCustomer.getRentals();
+    protected String headerString(Customer aCustomer) {
+        return "<H1>Rentals for <EM>" + aCustomer.getName() + "</EM></H1><P>\n";
+    }
 
-        String result = "<H1>Rentals for <EM>" + aCustomer.getName() +
-                "</EM></H1><P>\n";
+    protected String eachRentalString(Rental each) {
+        return each.getMovie().getTitle() + ": " +
+                String.valueOf(each.getCharge()) + "<BR>\n";
+    }
 
-        while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
-
-            result += each.getMovie().getTitle() + ": " +
-                    String.valueOf(each.getCharge()) + "<BR>\n";
-        }
-
-        result += "<P>You owe <EM>" +
-                String.valueOf(aCustomer.getTotalCharge()) + "</EM><P>\n";
-
-        result += "On this rental you earned <EM>" +
-                String.valueOf(aCustomer.getTotalFrequentRenterPoints()) +
+    protected String footerString(Customer aCustomer) {
+        return "<P>You owe <EM>" + aCustomer.getTotalCharge() + "</EM><P>\n" +
+                "On this rental you earned <EM>" +
+                aCustomer.getTotalFrequentRenterPoints() +
                 "</EM> frequent renter points<P>";
-
-        return result;
     }
 }
