@@ -26,9 +26,6 @@ public class Customer {
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
 
-            // Chamada atualizada!
-            double thisAmount = each.getCharge();
-
             frequentRenterPoints++;
 
             if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
@@ -36,9 +33,9 @@ public class Customer {
                 frequentRenterPoints++;
 
             result += "\t" + each.getMovie().getTitle() + "\t" +
-                    String.valueOf(thisAmount) + "\n";
+                    String.valueOf(each.getCharge()) + "\n";
 
-            totalAmount += thisAmount;
+            totalAmount += each.getCharge();
         }
 
         result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
